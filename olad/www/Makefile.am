@@ -18,7 +18,9 @@ dist_www_DATA = back.png \
 		loader-mini.gif \
 		loader.gif \
 		logo-mini.png \
+		logo-mini@2x.png \
 		logo.png \
+		logo@2x.png \
 		mobile.html \
 		mobile.js \
 		ola.html \

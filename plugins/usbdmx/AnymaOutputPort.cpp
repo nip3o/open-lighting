@@ -137,8 +137,9 @@ bool AnymaOutputPort::SendDMX(const DmxBuffer &buffer) {
           const_cast<unsigned char*>(buffer.GetRaw()),
           buffer.Size(),
           URB_TIMEOUT_MS);
+
   // Sometimes we get PIPE errors here, those are non-fatal
-  return r > 0 || r == LIBUSB_ERROR_PIPE;
+  return r > 0 || r == LIBUSB_ERROR_PIPE || r == LIBUSB_ERROR_OTHER;
 }
 
 

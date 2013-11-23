@@ -191,6 +191,10 @@ void UsbDmxPlugin::FindDevices() {
         device_descriptor.idProduct == 0x05DC) {
       OLA_INFO << "Found an Anyma device";
       device = NewAnymaDevice(usb_device, device_descriptor);
+    } else if (device_descriptor.idVendor == 0x03eb &&
+        device_descriptor.idProduct == 0x8888) {
+      OLA_INFO << "Found an AVLdiy.cn device";
+      device = NewAnymaDevice(usb_device, device_descriptor);
     } else if (device_descriptor.idVendor == 0x04d8 &&
         device_descriptor.idProduct == 0xfa63) {
       OLA_INFO << "Found a EUROLITE device";
@@ -320,8 +324,10 @@ UsbDevice* UsbDmxPlugin::NewAnymaDevice(
     libusb_device *usb_device,
     const struct libusb_device_descriptor &device_descriptor) {
   libusb_device_handle *usb_handle;
-  if (libusb_open(usb_device, &usb_handle)) {
-    OLA_WARN << "Failed to open Anyma usb device";
+
+  int error = libusb_open(usb_device, &usb_handle);
+  if (error) {
+    OLA_WARN << "Failed to open Anyma usb device, error " << libusb_error_name(error);
     return NULL;
   }
 

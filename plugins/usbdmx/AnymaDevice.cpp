@@ -30,8 +30,8 @@ namespace plugin {
 namespace usbdmx {
 
 
-const char AnymaDevice::EXPECTED_MANUFACTURER[] = "www.anyma.ch";
-const char AnymaDevice::EXPECTED_PRODUCT[] = "uDMX";
+const char AnymaDevice::EXPECTED_MANUFACTURER[] = "AVLdiy.cn";
+const char AnymaDevice::EXPECTED_PRODUCT[] = "D512";
 
 
 /**
@@ -45,7 +45,7 @@ AnymaDevice::AnymaDevice(ola::AbstractPlugin *owner,
                          libusb_device *usb_device,
                          libusb_device_handle *usb_handle,
                          const string &serial)
-    : UsbDevice(owner, "Anyma USB Device", usb_device),
+    : UsbDevice(owner, "AVLdiy.cn USB Device", usb_device),
       m_output_port(new AnymaOutputPort(this, 0, usb_handle, serial)) {
 }
 
@@ -69,7 +69,7 @@ bool AnymaDevice::StartHook() {
  */
 string AnymaDevice::DeviceId() const {
   if (m_output_port) {
-    return "anyma-" + m_output_port->SerialNumber();
+    return "avldiy-" + m_output_port->SerialNumber();
   } else {
     return "";
   }

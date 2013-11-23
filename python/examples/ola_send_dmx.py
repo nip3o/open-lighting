@@ -29,11 +29,11 @@ def DmxSent(state):
 universe = 1
 data = array.array('B')
 #append first dmx-value
-data.append(10)
+data.append(0)
 #append second dmx-value
-data.append(50)
+data.append(150)
 #append third dmx-value
-data.append(255)
+data.append(250)
 
 wrapper = ClientWrapper()
 client = wrapper.Client()
